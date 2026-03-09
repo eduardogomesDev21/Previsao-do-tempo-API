@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Clima</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Phosphor Icons para ícones modernos do clima -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="app-body" class="sunny">
+    <div class="dashboard-container">
+        <header>
+            <h1>Previsão do Tempo</h1>
+            <div class="datetime" id="current-datetime"></div>
+        </header>
+
+        <section class="search-section">
+            <input type="text" id="city-input" placeholder="Digite o nome da cidade..." autocomplete="off">
+            <button id="search-btn">
+                <i class="ph ph-magnifying-glass"></i> Buscar Clima
+            </button>
+        </section>
+
+        <div id="loading" class="hidden">
+            <i class="ph ph-spinner ph-spin"></i> Buscando dados...
+        </div>
+
+        <div id="error-message" class="hidden error-card">
+            <!-- Erro aparece aqui -->
+        </div>
+
+        <main id="weather-dashboard" class="hidden">
+            <div class="current-weather card">
+                <h2 id="city-name">Cidade</h2>
+                <div class="weather-main">
+                    <i id="current-icon" class="ph ph-sun weather-icon-large"></i>
+                    <div class="temp-box">
+                        <span id="current-temp">--</span>°C
+                    </div>
+                </div>
+                <div class="weather-details">
+                    <div class="detail">
+                        <i class="ph ph-wind"></i>
+                        <span>Vento: <strong id="current-wind">--</strong> km/h</span>
+                    </div>
+                    <div class="detail">
+                        <i class="ph ph-cloud"></i>
+                        <span id="current-condition">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast card">
+                <h3>Previsão para as próximas horas</h3>
+                <div class="hourly-container" id="hourly-forecast">
+                    <!-- Gerado pelo JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
